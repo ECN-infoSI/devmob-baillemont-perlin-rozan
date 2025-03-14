@@ -34,6 +34,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.devmo.utils.formatTime
 import androidx.compose.foundation.layout.Box
+import androidx.compose.material3.MenuAnchorType
+import androidx.compose.ui.platform.LocalContext
+import com.example.devmo.R
+
 
 @OptIn(ExperimentalMaterial3Api::class) // Ajout de l'annotation pour ExposedDropdownMenuBox
 @Composable
@@ -59,9 +63,11 @@ fun TimerScreen(
     val totalTime = 2700L
     val progress = if (totalTime > 0) (timerValue.toFloat() / totalTime.toFloat()) else 0f
 
-    var expanded by remember { mutableStateOf(false) } // État pour contrôler l'expansion du menu
+    var expanded by remember { mutableStateOf(false) } // État pour le menu déroulant
     var selectedMatiere by remember { mutableStateOf("") } // Matière sélectionnée
-    val matieres = listOf("Mathématiques", "Physique", "Chimie", "Biologie", "Histoire", "Géographie", "Informatique") // Liste des matières
+
+    val context = LocalContext.current // Récupération du contexte de l'application
+    val matieres = context.resources.getStringArray(R.array.matieres_array).toList() // Récupération des matières depuis strings.xml
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -103,7 +109,7 @@ fun TimerScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        ExposedDropdownMenuBox( // Remplacement du bouton par un ExposedDropdownMenuBox
+        ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded },
             modifier = Modifier
@@ -125,11 +131,11 @@ fun TimerScreen(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                matieres.forEach { matiere ->
-                    DropdownMenuItem(
+                matieres.forEach { matiere -> // Pour chaque matière dans la liste
+                    DropdownMenuItem( // Élément du menu déroulant
                         text = { Text(matiere) },
                         onClick = {
-                            selectedMatiere = matiere
+                            selectedMatiere = matiere // Sélectionne la matière
                             expanded = false
                         }
                     )
