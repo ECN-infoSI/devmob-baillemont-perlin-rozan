@@ -55,13 +55,19 @@ fun TimerScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CircularProgressIndicator(
-            progress = { progress },
-            modifier = Modifier.size(150.dp),
-            strokeWidth = 10.dp
-        )
-
-        Text(text = timerValue.formatTime(), fontSize = 24.sp)
+        Box( // Ajout : Utilisation de Box pour superposer les éléments
+            contentAlignment = Alignment.Center // Ajout : Alignement du contenu au centre
+        ) {
+            CircularProgressIndicator(
+                progress = { progress },
+                modifier = Modifier.size(150.dp),
+                strokeWidth = 10.dp
+            )
+            Text( // Ajout : Le texte est placé à l'intérieur de Box
+                text = timerValue.formatTime(),
+                fontSize = 24.sp
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
