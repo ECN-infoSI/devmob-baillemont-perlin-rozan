@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.devmo.databinding.FragmentSlideshowBinding
 import com.example.devmo.features.timer.presentation.TimerScreenContent
 import com.example.devmo.features.timer.viewmodel.TimerViewModel
+import androidx.fragment.app.activityViewModels
+import com.example.devmo.features.timer.presentation.TimerScreenContent
 
 class SlideshowFragment : Fragment() {
 
@@ -19,7 +21,7 @@ class SlideshowFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val timerViewModel: TimerViewModel by viewModels()
+    private val timerViewModel: TimerViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
