@@ -11,12 +11,15 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Couleur de fond de la fenêtre -->
+        <item name="android:windowBackground">@android:color/white</item> <!-- Fond blanc -->
         <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.Devmo.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/white</item> <!-- Fond blanc -->
     </style>
 
     <style name="Theme.Devmo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

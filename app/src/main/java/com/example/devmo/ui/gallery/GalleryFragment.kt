@@ -4,34 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.devmo.databinding.FragmentGalleryBinding
+import com.example.devmo.features.revision.SummaryScreen
+import com.example.devmo.features.timer.viewmodel.TimerViewModel
 
 class GalleryFragment : Fragment() {
 
     private var _binding: FragmentGalleryBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val timerViewModel: TimerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
-
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        galleryViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Ajoutez SummaryScreen à votre layout
+        binding.summaryScreenContainer.apply {
+            setContent {
+                SummaryScreen(timerViewModel)
+            }
         }
+
         return root
     }
 
