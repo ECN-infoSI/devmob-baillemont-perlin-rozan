@@ -32,8 +32,8 @@ fun SummaryScreen(timerViewModel: TimerViewModel) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            StatisticCard(label = "Total temps de révision", value = "${timerViewModel.getTotalHours()} heures")
-            StatisticCard(label = "Temps cette semaine", value = "${timerViewModel.getWeeklyHours()} heures")
+            StatisticCard(label = "Total temps de révision", value = timerViewModel.getTotalHours())
+            StatisticCard(label = "Temps cette semaine", value = timerViewModel.getWeeklyHours())
         }
 
         Spacer(modifier = Modifier.height(16.dp))
