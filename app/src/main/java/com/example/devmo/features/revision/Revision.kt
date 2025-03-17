@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-data class Revision(val startTime: String, val duration: Long)
+data class Revision(val startTime: String, val duration: Long, val subject: String)
 
 class RevisionViewModel : ViewModel() {
     private val _revisions = MutableLiveData<List<Revision>>(emptyList())

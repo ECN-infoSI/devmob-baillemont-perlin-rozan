@@ -36,19 +36,22 @@ import com.example.devmo.utils.formatTime
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.ui.platform.LocalContext
+import androidx.fragment.app.activityViewModels
 import com.example.devmo.R
+
+
 
 
 @OptIn(ExperimentalMaterial3Api::class) // Ajout de l'annotation pour ExposedDropdownMenuBox
 @Composable
 fun TimerScreenContent(timerViewModel: TimerViewModel) {
     val timerValue by timerViewModel.timer.collectAsState()
-
     TimerScreen(
         timerValue = timerValue,
         onStartClick = { timerViewModel.startTimer() },
         onPauseClick = { timerViewModel.pauseTimer() },
-        onStopClick = { timerViewModel.stopTimer() }
+        onStopClick = { timerViewModel.stopTimer() },
+        timerViewModel = timerViewModel
     )
 }
 
@@ -58,7 +61,8 @@ fun TimerScreen(
     timerValue: Long,
     onStartClick: () -> Unit,
     onPauseClick: () -> Unit,
-    onStopClick: () -> Unit
+    onStopClick: () -> Unit,
+    timerViewModel: TimerViewModel
 ) {
     val totalTime = 2700L
     val progress = if (totalTime > 0) (timerValue.toFloat() / totalTime.toFloat()) else 0f
@@ -137,6 +141,7 @@ fun TimerScreen(
                         onClick = {
                             selectedMatiere = matiere // Sélectionne la matière
                             expanded = false
+                            timerViewModel.selectedSubject = matiere
                         }
                     )
                 }
