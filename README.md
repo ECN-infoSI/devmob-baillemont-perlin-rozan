@@ -21,3 +21,5 @@ La vue SummaryScreen est alors la suivante :
 ![recap_revisions](https://github.com/user-attachments/assets/04c754ad-642d-45a5-b71d-6e4d634142ac)
 
 Le partage des données est fait grâce à un TimerViewModel partagé entre les vues et défini dans le MainActivity.
+
+Le lien du GitHub est le suivant : https://github.com/ECN-infoSI/devmob-baillemont-perlin-rozan.git
