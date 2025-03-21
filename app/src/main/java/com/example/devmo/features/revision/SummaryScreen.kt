@@ -10,6 +10,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -48,6 +50,10 @@ fun SummaryScreen(timerViewModel: TimerViewModel) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        Column {
+            Text(text = "Historique des révisions",
+                fontWeight = FontWeight.Bold
+            )
         // Afficher le récapitulatif des révisions
         if (revisions.isEmpty()) {
             Text(text = "Aucune révision enregistrée.")
@@ -56,7 +62,14 @@ fun SummaryScreen(timerViewModel: TimerViewModel) {
                 Text(text = "Heure de début: ${revision.startTime}, Durée: ${revision.duration} secondes, Matière: ${revision.subject}")
                 Spacer(modifier = Modifier.height(8.dp))
             }
-        }
+        }    } }
+}
+fun calculateFontSize(text: String): TextUnit {
+    return when {
+        text.length > 20 -> 12.sp // Réduire la taille de la police si le texte est long
+        text.length > 15 -> 14.sp
+        text.length > 10 -> 16.sp
+        else -> 18.sp // Taille de police par défaut
     }
 }
 
@@ -64,15 +77,23 @@ fun SummaryScreen(timerViewModel: TimerViewModel) {
 fun StatisticCard(label: String, value: String) {
     Card(
         modifier = Modifier
-            .padding(8.dp),
+            .padding(8.dp)
+            .size(150.dp),
+
     ) {
-        Column(
+        Box(
             modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            contentAlignment = Alignment.Center
         ) {
-            Text(text = label, fontSize = 16.sp)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = value, fontSize = 18.sp)
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = label, fontSize = calculateFontSize(label))
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = value, fontSize = calculateFontSize(label))
+            }
         }
     }
+
 }
