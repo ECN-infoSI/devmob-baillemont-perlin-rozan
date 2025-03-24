@@ -11,6 +11,7 @@ Lorsque l'on arrête le timer, un Objet Revision est crée, qui contient les inf
 - Heure de début de révision
 - Durée de révision
 - Matière révisée
+
 C'est la liste de ces objets révisions crées qui est passée entre les deux vues. Cela permet de faire des statistiques sur les révisions dans la vue SummaryScreen.
 On peut passer à la vue SummaryScreen grâce à un drawer menu : Figure 3
 
